@@ -1,0 +1,16 @@
+# El sitio todavia tiene datos de relleno (testimonios de ejemplo, telefono sin
+# confirmar), asi que no debe indexarse.
+#
+# OJO: en un project site de GitHub Pages este archivo queda en
+# /AdrianCampanaro/robots.txt, y los buscadores solo leen el robots.txt de la
+# RAIZ DEL ORIGEN (lisandrocacciatore.github.io/robots.txt). O sea que aca
+# probablemente NO se aplique: lo que realmente bloquea el indexado es la meta
+# etiqueta robots que vite.config.js inyecta en el <head>.
+#
+# Este archivo sirve igual si algun dia se publica en un dominio propio o en la
+# raiz del sitio.
+#
+# Para permitir el indexado: build con PUBLIC_SITE=true y borrar este archivo.
+
+User-agent: *
+Disallow: /

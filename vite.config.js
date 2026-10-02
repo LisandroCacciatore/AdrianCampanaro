@@ -8,7 +8,31 @@ import react from '@vitejs/plugin-react';
 // que este unico valor alcanza para los dos destinos.
 const base = process.env.DEPLOY_TARGET === 'ghpages' ? '/AdrianCampanaro/' : '/';
 
+// Mientras el sitio tenga datos de relleno (testimonios de ejemplo, telefono
+// sin confirmar) NO tiene que indexarse. El default es no indexar: hay que
+// pedir lo contrario a proposito, asi un olvido deja el sitio afuera de Google
+// en vez de adentro con datos falsos.
+//
+// Para habilitar el indexado cuando los datos sean reales:
+//   PUBLIC_SITE=true npm run build      (y agregarlo al env del workflow)
+const META_NOINDEX =
+  '    <meta name="robots" content="noindex, nofollow" />\n';
+
+function noindexHastaPublicar() {
+  return {
+    name: 'noindex-hasta-publicar',
+    transformIndexHtml(html) {
+      if (process.env.PUBLIC_SITE === 'true') {
+        console.log('[noindex] PUBLIC_SITE=true -> el sitio se puede indexar');
+        return html;
+      }
+      console.log('[noindex] bloqueando indexado (falta PUBLIC_SITE=true)');
+      return html.replace('</head>', META_NOINDEX + '  </head>');
+    },
+  };
+}
+
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), noindexHastaPublicar()],
   base,
 });

@@ -37,6 +37,11 @@ jobs:
         env:
           # Le dice a vite.config.js que use base '/AdrianCampanaro/'.
           DEPLOY_TARGET: ghpages
+          # El indexado esta BLOQUEADO a proposito mientras el sitio tenga
+          # datos de relleno. Cuando los datos sean reales (testimonios,
+          # telefono, matricula), descomentar la linea de abajo y borrar
+          # public/robots.txt.
+          # PUBLIC_SITE: 'true'
 
       - uses: actions/configure-pages@v5
 

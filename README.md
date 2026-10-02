@@ -57,6 +57,35 @@ con datos falsos. Están marcados con `TODO` en el código.
 | **Sede** | `site.location` dice Rosario, `About.jsx` dice CABA | Contradicción. Definir cuál es la correcta |
 | **Envío del formulario** | `src/pages/Contact.jsx` (`handleSubmit`) | No envía nada: solo muestra el mensaje de éxito. Falta conectar un endpoint |
 
+## 🔒 El sitio está bloqueado para buscadores (a propósito)
+
+GitHub Pages está activo en **https://lisandrocacciatore.github.io/AdrianCampanaro/**
+y el sitio tiene datos de relleno. Por eso **el indexado está bloqueado por defecto**.
+
+Lo hace un plugin en `vite.config.js` que inyecta `<meta name="robots" content="noindex, nofollow">`
+en el `<head>` de cada build, salvo que se pida lo contrario. El default es no indexar: si
+alguien se olvida de destrabarlo, el error es que el sitio no aparece en Google, no que
+aparezca con testimonios inventados.
+
+Lo elegí así porque `public/robots.txt` **no alcanza** en un project site de Pages: los
+buscadores solo leen el `robots.txt` de la raíz del origen (`lisandrocacciatore.github.io/robots.txt`),
+que pertenece a otro repo. La meta etiqueta sí se respeta en cualquier ruta.
+
+### Para permitir que Google indexe el sitio
+
+Cuando los datos de la tabla de arriba sean todos reales:
+
+1. Descomentar `PUBLIC_SITE: 'true'` en `.github/workflows/deploy.yml`
+2. Borrar `public/robots.txt`
+3. Commit y push: el deploy lo toma solo
+
+Para verificarlo en local:
+
+```bash
+npm run build && grep -c 'name="robots"' dist/index.html     # 1 = bloqueado
+PUBLIC_SITE=true npm run build && grep -c 'name="robots"' dist/index.html  # 0 = indexable
+```
+
 ## Deploy
 
 ### Opción A: Vercel / Netlify (recomendado)
