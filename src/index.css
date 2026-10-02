@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply font-sans text-ink-body bg-surface antialiased;
+    line-height: 1.6;
+    overscroll-behavior: none;
+  }
+  h1, h2, h3, h4 {
+    @apply text-ink-title;
+    line-height: 1.25;
+  }
+  a:focus-visible,
+  button:focus-visible,
+  [tabindex]:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible {
+    outline: 2px solid #4169E1;
+    outline-offset: 2px;
+  }
+  ::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply max-w-container mx-auto px-6;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 font-sans text-[13.5px] font-semibold uppercase tracking-[0.04em] rounded-btn px-7 py-3.5 min-h-[48px] min-w-[44px] cursor-pointer transition-colors duration-200;
+  }
+  .btn-primary {
+    @apply bg-brand text-white border border-brand hover:bg-brand-hover hover:border-brand-hover;
+  }
+  .btn-secondary {
+    @apply bg-transparent text-brand border border-brand hover:bg-surface-muted;
+  }
+  .btn-dark-cta {
+    @apply bg-brand text-white border border-white/20 hover:bg-[#5A7B85];
+  }
+
+  .section {
+    @apply py-16 md:py-20;
+  }
+  .section-alt {
+    @apply bg-surface-alt;
+  }
+
+  .eyebrow {
+    @apply inline-block text-[13px] font-semibold uppercase tracking-[0.06em] text-brand bg-brand-soft px-3 py-1 rounded;
+  }
+}
