@@ -127,6 +127,29 @@ el layout queda sin el espacio previsto, en silencio.
 - ARIA en navegación, filtros del blog y estado del formulario
 - Navegación por teclado completa
 
+## Seguridad — advisories conocidos y por qué no se actualizó
+
+`npm audit` reporta 4 vulnerabilidades (3 moderate, 1 high) al 2/10/2026. **No se
+corrieron con `npm audit fix --force` a propósito**, porque los fixes disponibles son
+saltos de versión mayor: `vite` 5 → 8 y `react-router-dom` 6 → 7. Eso es un trabajo con
+sus propias pruebas, no un `--force` sobre un proyecto recién migrado.
+
+Estado real de exposición:
+
+| Paquete | Severidad | De qué es | Exposición en este proyecto |
+|---|---|---|---|
+| `vite` | high | 4 advisories: path traversal en deps optimizadas, `launch-editor` NTLMv2 vía UNC, bypass de `server.fs.deny` en rutas alternativas de Windows, y esbuild | **Ninguna en producción.** Los cuatro son del *servidor de desarrollo*. El `dist/` desplegado es HTML/CSS/JS estáticos: no hay servidor Vite corriendo. Sí aplica al entorno local de desarrollo, sobre todo en Windows |
+| `esbuild` | moderate | Enviar requests al dev server y leer la respuesta | Igual: sólo dev server |
+| `react-router` | moderate | (a) open redirect vía backslash en `<Link>`/`useNavigate`; (b) inyección de constructor vía `deserializeErrors()` en SSR hydration | **Ninguna.** Verificado con `grep`: el único valor dinámico del proyecto es `post.slug`, que sale de un array estático en `src/data/blog.js` y se usa para un `.find()`. Nunca entra a un `<Link to=>`. `useNavigate` no se usa. No hay código de SSR hydration en lo que se despliega |
+| `react-router-dom` | moderate | Arrastra de `react-router` | Igual |
+
+Mitigación vigente sin cambiar versiones: el dev server de Vite escucha sólo en
+localhost (no hay `--host` en ningún script), así que no es alcanzable desde la red.
+
+**Pendiente recomendado:** planificar el salto `vite` 5 → 8 y `react-router-dom` 6 → 7
+como tarea aparte, con `npm run check:render` como red de seguridad y una prueba visual
+de las 7 rutas antes y después.
+
 ## Licencia
 
 © 2026 Adrián Campanaro. Todos los derechos reservados.
