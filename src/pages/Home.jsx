@@ -34,7 +34,9 @@ export default function Home() {
             </div>
 
             <div className="flex justify-center relative">
-              {/* TODO(foto real): reemplazar picsum por el retrato de Adrián. */}
+              {/* TODO(foto real): reemplazar picsum por el retrato de Adrián en
+                  alta resolución (mínimo 880x960). El archivo de src/assets es
+                  124x145: alcanza para avatares chicos, no para este marco. */}
               <img
                 src="https://picsum.photos/seed/adrian/880/960"
                 alt="Adrián Campanaro, consultor estratégico y asesor de liderazgo ejecutivo"

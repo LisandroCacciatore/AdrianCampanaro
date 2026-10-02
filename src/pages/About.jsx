@@ -24,7 +24,9 @@ export default function About() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             <div className="lg:col-span-5">
               <div className="relative overflow-hidden rounded-xl shadow-card">
-                {/* TODO(foto real): reemplazar picsum por el retrato de Adrián. */}
+                {/* TODO(foto real): reemplazar picsum por el retrato de Adrián en
+                    alta resolución (mínimo 800x1000). El archivo de src/assets
+                    es 124x145: alcanza para avatares chicos, no para este marco. */}
                 <img
                   src="https://picsum.photos/seed/adrian-about/800/1000"
                   alt="Adrián Campanaro, psicólogo psicoanalista y consultor estratégico"

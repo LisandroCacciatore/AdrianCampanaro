@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { site, waMessages } from '../data/site.js';
+import avatar from '../assets/adrian-avatar-124px.png';
 
 export default function WhatsAppWidget() {
   const [open, setOpen] = useState(true);
@@ -24,9 +25,12 @@ export default function WhatsAppWidget() {
           style={{ animation: 'waSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1)' }}
         >
           <div className="bg-wa-header p-4 text-white flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-white text-wa-header font-bold flex items-center justify-center text-sm shrink-0">
-              AC
-            </div>
+            <img
+              src={avatar}
+              alt=""
+              aria-hidden="true"
+              className="w-10 h-10 rounded-full object-cover object-top shrink-0 ring-2 ring-white/25"
+            />
             <div className="grow">
               <div className="text-[14.5px] font-bold leading-tight">
                 {site.name}

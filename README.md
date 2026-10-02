@@ -50,7 +50,7 @@ con datos falsos. Están marcados con `TODO` en el código.
 |---|---|---|
 | **Teléfono y WhatsApp** | `src/data/site.js` (`phone`, `phoneRaw`, `whatsapp`) | Relleno: `5491100000000`. Formato: solo dígitos con código de país |
 | **LinkedIn** | `src/data/site.js` (`linkedin`) | Relleno: `https://linkedin.com` |
-| **Fotos** | `Home.jsx`, `About.jsx`, `src/data/blog.js` | Relleno: `picsum.photos`. Reemplazar por fotos reales |
+| **Fotos** | `Home.jsx`, `About.jsx`, `src/data/blog.js` | El retrato real ya está en `src/assets/adrian-avatar-124px.png` y se usa en dos avatares de 40px. Hero, retrato de Quiénes somos y posts del blog siguen con `picsum.photos` |
 | **Testimonios** | `src/data/site.js` (`testimonials`) | **Nombres y citas inventados.** Reemplazar por testimonios reales y autorizados, o borrar la sección |
 | **Número de matrícula** | `src/pages/About.jsx` | Sin confirmar. Verificar o quitar |
 | **Cuerpo de los artículos** | `src/pages/BlogPost.jsx` | Hoy es el mismo texto provisorio para los cuatro posts |

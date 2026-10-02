@@ -1,4 +1,5 @@
 import { services } from '../data/site.js';
+import avatar from '../assets/adrian-avatar-124px.png';
 import { Button, Container, Section } from '../components/ui.jsx';
 
 const moduleDetails = {
@@ -63,9 +64,12 @@ export default function Services() {
             </div>
             <aside className="lg:col-span-4 bg-surface-alt rounded-xl p-6">
               <div className="flex items-center gap-3 mb-4">
-                <span className="w-10 h-10 rounded-full bg-brand text-white flex items-center justify-center font-semibold">
-                  AC
-                </span>
+                <img
+                  src={avatar}
+                  alt=""
+                  aria-hidden="true"
+                  className="w-10 h-10 rounded-full object-cover object-top shrink-0"
+                />
                 <div>
                   <p className="font-semibold text-ink-title">
                     Adrián Campanaro
