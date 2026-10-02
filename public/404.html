@@ -1,12 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
   <head>
     <meta charset="utf-8" />
     <title>Adrián Campanaro</title>
     <script>
+      // GitHub Pages no tiene fallback de SPA: cualquier ruta que no sea un
+      // archivo real devuelve este 404.html. Guardamos la URL pedida y
+      // volvemos a la raiz, donde el router la restaura (ver src/main.jsx).
       sessionStorage.redirect = location.href;
+
+      // Redirige a la raiz del PROYECTO, no a la raiz del dominio: en Pages el
+      // sitio vive en /<repo>/. Se deriva del pathname en vez de hardcodear el
+      // nombre del repo, asi no se rompe si el repo se renombra.
+      var seg = location.pathname.split('/').filter(Boolean);
+      location.replace('/' + (seg[0] ? seg[0] + '/' : ''));
     </script>
-    <meta http-equiv="refresh" content="0;URL='/'" />
   </head>
-  <body></body>
+  <body>
+    <noscript>
+      <p>
+        La página que buscás no existe o fue movida.
+        <a href="/">Volver al inicio</a>
+      </p>
+    </noscript>
+  </body>
 </html>
